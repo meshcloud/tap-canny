@@ -524,6 +524,50 @@ class Posts(CannyStream):
             th.StringType,
             description="The post's URL",
         ),
+        th.Property(
+            "clickup",
+            th.ObjectType(
+                th.Property(
+                    "linkedTasks",
+                    th.ArrayType(
+                        th.ObjectType(
+                            th.Property(
+                                "id",
+                                th.StringType,
+                                description="The ClickUp task ID",
+                            ),
+                            th.Property(
+                                "linkID",
+                                th.StringType,
+                                description="The link ID between post and ClickUp task",
+                            ),
+                            th.Property(
+                                "name",
+                                th.StringType,
+                                description="The ClickUp task name",
+                            ),
+                            th.Property(
+                                "postID",
+                                th.StringType,
+                                description="The post ID this task is linked to",
+                            ),
+                            th.Property(
+                                "status",
+                                th.StringType,
+                                description="The ClickUp task status",
+                            ),
+                            th.Property(
+                                "url",
+                                th.StringType,
+                                description="The ClickUp task URL",
+                            ),
+                        ),
+                    ),
+                    description="Array of linked ClickUp tasks",
+                ),
+            ),
+            description="ClickUp integration data",
+        ),
     ).to_dict()
 
     def post_process(
