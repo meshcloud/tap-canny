@@ -7,7 +7,7 @@ import typing as t
 from singer_sdk import typing as th
 from singer_sdk.pagination import BaseAPIPaginator
 
-from tap_canny.client import CannyStream
+from tap_canny.client import CannyStream, CannyOffsetStream
 
 if t.TYPE_CHECKING:
     from requests import Response
@@ -415,7 +415,7 @@ class Opportunities(CannyStream):
     ).to_dict()
 
 
-class Posts(CannyStream):
+class Posts(CannyOffsetStream):
     """Posts stream."""
 
     name = "posts"

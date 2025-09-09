@@ -26,7 +26,8 @@ class CannyPaginator(BaseOffsetPaginator):
             True if there are more pages to fetch.
         """
         data = response.json()
-        return data.get("has_more", False)  # type: ignore[no-any-return]
+        has_more = data.get("hasMore", False)  # type: ignore[no-any-return]        
+        return has_more
 
 
 class CannyStream(RESTStream[int]):
