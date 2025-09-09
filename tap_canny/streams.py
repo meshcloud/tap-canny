@@ -14,6 +14,7 @@ if t.TYPE_CHECKING:
     from singer_sdk.helpers.types import Context
 
 
+# Does not support pagination in the API
 class Boards(CannyStream):
     """Boards stream."""
 
@@ -66,7 +67,7 @@ class Boards(CannyStream):
     ).to_dict()
 
 
-class Categories(CannyStream):
+class Categories(CannyOffsetStream):
     """Categories stream."""
 
     name = "categories"
@@ -108,7 +109,7 @@ class Categories(CannyStream):
     ).to_dict()
 
 
-class ChangelogEntries(CannyStream):
+class ChangelogEntries(CannyOffsetStream):
     """Changelog entries stream."""
 
     name = "changelog_entries"
@@ -321,7 +322,7 @@ class Comments(CannyOffsetStream):
         return row
 
 
-class Companies(CannyStream):
+class Companies(CannyOffsetStream):
     """Companies stream."""
 
     name = "companies"
@@ -368,7 +369,7 @@ class Companies(CannyStream):
     ).to_dict()
 
 
-class Opportunities(CannyStream):
+class Opportunities(CannyOffsetStream):
     """Opportunities stream."""
 
     name = "opportunities"
@@ -599,7 +600,7 @@ class Posts(CannyOffsetStream):
         return row
 
 
-class StatusChanges(CannyStream):
+class StatusChanges(CannyOffsetStream):
     """Status changes stream."""
 
     name = "status_changes"
@@ -672,7 +673,7 @@ class StatusChanges(CannyStream):
         return row
 
 
-class Tags(CannyStream):
+class Tags(CannyOffsetStream):
     """Tags stream."""
 
     name = "tags"
@@ -762,6 +763,7 @@ class UsersPaginator(BaseAPIPaginator[str | None]):
         return data.get("cursor")  # type: ignore[no-any-return]
 
 
+# Users stream uses a different pagination mechanism
 class Users(CannyStream):
     """Users stream."""
 
@@ -841,7 +843,7 @@ class Users(CannyStream):
         return UsersPaginator(None)
 
 
-class Votes(CannyStream):
+class Votes(CannyOffsetStream):
     """Votes stream."""
 
     name = "votes"
