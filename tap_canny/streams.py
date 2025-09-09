@@ -218,7 +218,7 @@ class ChangelogEntries(CannyStream):
     ).to_dict()
 
 
-class Comments(CannyStream):
+class Comments(CannyOffsetStream):
     """Comments stream."""
 
     name = "comments"
