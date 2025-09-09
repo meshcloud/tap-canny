@@ -842,6 +842,18 @@ class Users(CannyStream):
         """
         return UsersPaginator(None)
 
+    def get_url_params(
+        self,
+        context: Context | None,
+        next_page_token: string | None,
+    ) -> dict[str, Any]:
+        """Get URL query parameters."""
+        params = super().get_url_params(context, next_page_token)
+        
+        if (next_page_token != None):
+            params["cursor"] = next_page_token
+
+        return params
 
 class Votes(CannyOffsetStream):
     """Votes stream."""
